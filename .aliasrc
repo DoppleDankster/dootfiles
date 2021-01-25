@@ -1,0 +1,27 @@
+source $HOME/.profile
+
+# Shell stuff
+alias ls='ls --color=tty'
+alias ll='ls -la'
+alias grep='grep  --color=auto'
+alias zshreload="source $HOME/.zshrc"
+alias polybarreload="$HOME/.config/polybar/launch.sh"
+
+#Python
+
+#GO
+export GOPATH=$HOME/.local/go
+export GO111MODULE=on
+
+#can't install package with [] in the name because of zsh file globbing
+alias pip='noglob pip'
+alias pip3='noblob pip3'
+
+#Emacs
+alias e=emacs
+alias es="emacs -nw"
+alias ed="emacs --daemon"
+alias ec="emacsclient -t"
+
+#TMUX
+alias  devmux="~/.config/scripts/devmux.sh"
