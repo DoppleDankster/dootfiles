@@ -12,6 +12,7 @@ alias polybarreload="$HOME/.config/polybar/launch.sh"
 #GO
 export GOPATH=$HOME/.local/go
 export GO111MODULE=on
+export PATH=$PATH:$GOPATH/bin
 
 #can't install package with [] in the name because of zsh file globbing
 alias pip='noglob pip'

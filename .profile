@@ -10,8 +10,8 @@ if  [ -d "$HOME/.local/script" ] ; then
     PATH="$HOME/.local/script:$PATH"
 fi
 
-if  [ -d "/usr/bin/go" ] ; then
-    PATH="/usr/bin/go:$PATH"
+if  [ -d "/usr/local/go/bin/" ] ; then
+    PATH="/usr/local/go/bin/:$PATH"
 fi
 
 if [ -d "$HOME/.local/go/bin" ] ; then

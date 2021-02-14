@@ -10,7 +10,7 @@ exec_always --no-startup-id autorandr --load mono1
 #Picom
 exec --no-startup-id picom -e 1 -i 1
 #Notification Center
-exec_always --no-startup-id deadd-notification-center
+exec_always --no-startup-id ntfd
 # Set a random background every time i3 is launched or reset
 exec_always --no-startup-id nitrogen --restore 2>/dev/null
 
@@ -65,13 +65,16 @@ set $mod Mod4
 bindsym $mod+Return    exec --no-startup-id alacritty
 
 # Browser
-bindsym $mod+w exec --no-startup-id brave
+bindsym $mod+Shift+Return exec --no-startup-id brave
 
 # Emacs
 bindsym $mod+e         exec --no-startup-id emacs
 
 # Open launcher
-bindsym $mod+d         exec --no-startup-id dmenu_run
+bindsym $mod+space         exec --no-startup-id rofi -show drun
+
+# Open cmd launcher
+bindsym $mod+Shift+space   exec --no-startup-id rofi -show run
 
 # Lock session
 bindsym $mod+l     exec --no-startup-id betterlockscreen -l -t "Wake the Fuck up Samurai"
@@ -129,17 +132,10 @@ bindsym $mod+a focus parent
 # Return focus to the child container
 bindsym $mod+z focus child
 
-# Toggle tiling/floating for a container
-bindsym $mod+Shift+space floating toggle
-# Change focus between tiling/floating containers
-bindsym $mod+space focus mode_toggle
-# Hold the mod key to drag and resize floating container
-floating_modifier $mod
-
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-# Special mode to resize window (mouse drag also works)
+# iSpecial mode to resize window (mouse drag also works)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # Grow/shrink the window size using typical vim navigation or arrows
@@ -163,11 +159,11 @@ bindsym $mod+r mode "resize"
 # Controls to navigate between workspaces
 
 # Special workspaces
-set $wksp1 ""
-set $wksp2 ""
-set $wksp3 ""
-set $wksp4 ""
-set $wksp5 ""
+set $wksp1 "TERM"
+set $wksp2 "BROWSER"
+set $wksp3 "IDE"
+set $wksp4 "CHAT"
+set $wksp5 "MEDIA"
 # Switch to workspace
 bindsym $mod+1 workspace $wksp1
 bindsym $mod+2 workspace $wksp2
@@ -235,12 +231,23 @@ for_window [class="Gnome-calculator"] floating enable
 for_window [class="feh"] floating enable
 
 #Force clients to spawn in specific workspaces
-assign [title="^alacritty$"] $wksp1
+# TERMINALS
+assign [class="Alacritty"] $wksp1
+
+# BROWSERS
 assign [class="firefox"] $wksp2
-assign [class="^.*Brave-browser$"] $wksp2
-for_window [title="^.*- Doom Emacs"] move to workspace $wksp3
+assign [class="Brave-browser"] $wksp2
+
+# IDE
+assign [class="Emacs"] $wksp3
+assign [class="VSCodium"] $wksp3
+
+# CHAT APPLICATIONS
 assign [class="discord"] $wksp4
-for_window [class="Spotify"] move to workspace $wksp5
+assign [class="Signal"] $wksp4
+
+# MEDIAS
+assign [class="Spotify"] $wksp5
 
 # bar {
 # status_command i3status
