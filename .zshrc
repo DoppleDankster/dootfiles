@@ -1,4 +1,3 @@
-eval $(keychain --confhost --quiet --nogui --agents ssh,gpg)
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="ys"
 
@@ -41,7 +40,10 @@ setopt hash_list_all    # Correct false reports of spelling errors
 # Aliases
 source $HOME/.aliasrc
 source $HOME/.profile
-plugins=(git golang docker fzf aws)
+plugins=(git golang docker fzf aws zsh-syntax-highlighting)
+
+# SSH
+eval $(keychain --eval --quiet --confhost)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -22,7 +22,10 @@ if [ -d "$HOME/.emacs.d/bin" ] ; then
     PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
-
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/.npm-packages" ] ; then
+    PATH="$HOME/.npm-packages/bin:$PATH"
 fi
