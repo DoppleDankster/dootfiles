@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+#Script to move every input source to another sink using the PulseAudio command line and Dmenu
+
+# pick an audio output from the list
+list_sinks_output () {
+    pactl list sinks | grep Description | awk '{$1="";print $0}' | rofi -dmenu -p "Audio Switch" -a 0 -no-custom
+}
+
+# extract the sink index from the pactl list sink result
+get_sink_output_index(){
+    echo "$1" | sed 's/Sink #//'
+}
+
+# return the index of a sink using it's Description
+# we set the sink before it appears first.
+# break when the description of the currently evaluated sinks match the dmenu output
+get_sinks_output_indexes() {
+    pactl list sinks | while read -r line
+    do
+        if  echo "$line" | grep -q "Sink" ; then
+            sink_value=$(get_sink_output_index "$line")
+
+        elif echo "$line" | grep -q "$1"; then
+            echo "$sink_value"
+            break
+        fi
+    done
+}
+
+# Return the index of Sink input
+# Example : Sink Input #3 -> 3
+get_sink_input_index() {
+    echo "$1" | grep -Po "Sink Input #\K.*"
+}
+
+# Return the application binary name of a sink input
+# Strips out the '"' at the begining and the end of the string
+# Example "Discord" -> Discord
+get_sink_input_app_name() {
+    app_name=$(echo $1 | grep -Po ".*application.process.binary = \K.*")
+    app_name="${app_name%?}"
+    app_name="${app_name#?}"
+    echo "$app_name"
+}
+
+# List all input sink index except for Discord
+get_non_chat_sinks () {
+     pactl list sink-inputs | while read -r line; do
+        if echo "$line" | grep -q "Sink Input #.*"; then
+            current_index=$(get_sink_input_index "$line")
+        elif echo "$line" | grep -q "application.process.binary";then
+            current_app=$(get_sink_input_app_name "$line")
+            if [ "$current_app" = "Discord" ]; then
+                continue
+            fi
+            echo "$current_index"
+        else
+            continue
+        fi
+     done
+}
+
+# move audio inputs to another output
+change_audio_sink(){
+    "$2" | while read -r input; do
+        echo "$input"
+        # move existing stream to inactive sink
+        pacmd move-sink-input "$input" "$1"
+    done
+}
+
+choice=$(list_sinks_output)
+sink_value=$(get_sinks_output_indexes "$choice")
+change_audio_sink "$sink_value" get_non_chat_sinks
