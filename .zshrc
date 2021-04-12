@@ -43,7 +43,8 @@ source $HOME/.profile
 plugins=(git golang docker fzf aws zsh-syntax-highlighting)
 
 # SSH
-eval $(keychain --eval --quiet --confhost)
+eval `keychain --agents ssh --eval github gitlab server --quiet --confhost`
+
 
 source $ZSH/oh-my-zsh.sh
 
