@@ -2,10 +2,10 @@
 # Applications to be launched when i3 starts
 #NumlockX
 exec_always --no-startup-id numlockx on
+# Screens
+#exec_always --no-startup-id dual_monitor
 #Polybar
 exec --no-startup-id ~/.config/polybar/launch.sh
-#Xrandr via autorandr
-exec_always --no-startup-id autorandr --load double
 #Picom
 exec --no-startup-id picom -e 1 -i 1
 #Notification Center
