@@ -39,6 +39,7 @@ setopt hash_list_all
 # Aliases
 source $HOME/.aliasrc
 source $HOME/.profile
+source $HOME/.datapredrc
 plugins=(git golang docker fzf aws zsh-syntax-highlighting)
 
 # SSH
