@@ -12,17 +12,16 @@ BULLETTRAIN_PROMPT_ORDER=(
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt append_history           # append
-setopt hist_ignore_all_dups     # no duplicate
-setopt hist_reduce_blanks       # trim blanks
-setopt hist_verify              # show before executing history commands
+setopt append_history
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
 #unsetopt hist_ignore_space      # ignore space prefixed commands
-setopt inc_append_history       # add commands as they are typed, don't wait until shell exit
-setopt share_history            # share hist between sessions
-setopt bang_hist                # !keyword
-setopt extendedglob             # Use the ^, ~, and # for filename globbing
-setopt nocaseglob               # Case insensitive filename globbing
-setopt nomatch                  # Warn if file globbing didn't match any file
+setopt inc_append_history
+setopt share_history
+setopt bang_hist
+setopt extendedglob
+setopt nocaseglob
+setopt nomatch
 
 # Navigation
 setopt autocd autopushd
@@ -32,10 +31,10 @@ autoload -U promptinit
 promptinit
 
 # Misc
-setopt nobeep           # Disable terminal bell
-setopt autocd           # cd if only a directory name was entered
-setopt correct          # Prompt to correct misspelled commands
-setopt hash_list_all    # Correct false reports of spelling errors
+setopt nobeep
+setopt autocd
+setopt correct
+setopt hash_list_all
 
 # Aliases
 source $HOME/.aliasrc

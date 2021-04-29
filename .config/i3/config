@@ -10,6 +10,7 @@ exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id picom -e 1 -i 1
 #Notification Center
 exec_always --no-startup-id ntfd
+exec_always --no-startup-id deadd-notification-center
 # Set a random background every time i3 is launched or reset
 exec_always --no-startup-id nitrogen --restore 2>/dev/null
 
