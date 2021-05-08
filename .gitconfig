@@ -1,3 +1,8 @@
 [user]
 	email = davidmedioni@protonmail.com
 	name = Doppledankster
+
+[includeIf "gitdir:Datapred/"]
+    path = .gitconfig-datapred
+[gitlab]
+	user = DavidMEDIONI
