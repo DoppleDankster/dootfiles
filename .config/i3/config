@@ -165,7 +165,7 @@ set $wksp2 "BROWSER"
 set $wksp3 "IDE"
 set $wksp4 "CHAT"
 set $wksp5 "MEDIA"
-set $wksp6 "DOTA2"
+set $wksp6 "RDP/VPN"
 # Switch to workspace
 bindsym $mod+1 workspace $wksp1
 bindsym $mod+2 workspace $wksp2
@@ -247,12 +247,16 @@ assign [class="VSCodium"] $wksp3
 # CHAT APPLICATIONS
 assign [class="discord"] $wksp4
 assign [class="Signal"] $wksp4
+assign [class="Slack"] $wksp4
+
 
 # MEDIAS
-assign [class="spotify"] $wksp5
+for_window [class="Spotify"] move to workspace $wksp5
 
-# DOTA
-assign [class="dota2"] $wksp6
+
+# RDP / VPN
+assign [class="forticlient"] $wksp6
+assign [class="xfreerdp"] $wksp6
 
 # bar {
 # status_command i3status

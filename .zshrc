@@ -39,11 +39,14 @@ setopt hash_list_all
 # Aliases
 source $HOME/.aliasrc
 source $HOME/.profile
-source $HOME/.datapredrc
+source $HOME/.datapred/.datapredrc
 plugins=(git golang docker fzf aws zsh-syntax-highlighting)
 
 # SSH
 eval `keychain --agents ssh --eval github gitlab server --quiet --confhost`
+
+# Pyenv
+eval "$(pyenv init -)"
 
 
 source $ZSH/oh-my-zsh.sh

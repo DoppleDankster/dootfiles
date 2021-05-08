@@ -29,3 +29,7 @@ fi
 if [ -d "$HOME/.npm-packages" ] ; then
     PATH="$HOME/.npm-packages/bin:$PATH"
 fi
+
+if [ -d "$HOME/.pyenv/bin" ] ; then
+    PATH="$HOME/.pyenv/bin:$PATH"
+fi

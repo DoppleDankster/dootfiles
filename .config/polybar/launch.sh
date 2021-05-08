@@ -7,8 +7,10 @@ killall -q polybar
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-monitors="eDP-1"
-# Launch bar1 and bar2
-for m in $monitors; do
-  MONITOR=$m polybar -q -c ~/.config/polybar/config.ini main &
-done
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar -q -c ~/.config/polybar/config.ini main &
+  done
+else
+  polybar -q -c ~/.config/polybar/config.ini main &
+fi
