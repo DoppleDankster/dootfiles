@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+print_icon() {
+    case $1 in
+        01*) echo "☀";;
+        02*) echo "🌤";;
+        03*) echo "🌥";;
+        04*) echo "☁";;
+        09*) echo "🌧";;
+        10*) echo "🌦";;
+        11*) echo "🌩";;
+        13*) echo "🌨";;
+        50*) echo "🌫";;
+    esac
+}
+
+print_line() {
+
+    # temps
+    min=$(echo $1 | jq  '.temp.min')
+    max=$(echo $1 | jq  '.temp.max')
+    day=$(echo $1 | jq  '.temp.day')
+
+    # date
+    date=$(date -d @$(echo $1 | jq  '.dt') +'%A %m/%d')
+    
+    weather=$(echo $1 | jq -r '.weather[].icon')
+    icon=$(print_icon $weather)
+    echo "$date $icon: Day: $day°C Max: $max°C Min: $min°C"
+}
+
+curl -s https://api.openweathermap.org/data/2.5/onecall\?lat\=48.9\&lon\=2.4667\&units\=metric\&exclude\=current,minutely,hourly\&appid\=$openweather_api_token|jq -cr '.daily[]' | sed -e 's/ /_/g' | while read -r i; do
+    print_line $i
+done
+
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+xsetwacom set 'Wacom Intuos S Pen stylus' MapToOutput HEAD-1
+xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput HEAD-1
+xsetwacom set 'Wacom Intuos S Pen eraser' MapToOutput HEAD-1
+xsetwacom set 'Wacom Intuos S Pen cursor' MapToOutput HEAD-1
