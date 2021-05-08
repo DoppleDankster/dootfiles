@@ -26,5 +26,4 @@ alias ec="emacsclient -t"
 
 #TMUX
 alias  devmux="~/.config/scripts/devmux.sh"
-alias dual_monitor='nvidia-settings --assign "CurrentMetaMode=DPY-5: 2560x1440_144 @2560x1440 +0+0 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-3: 2560x1440_144 @2560x1440 +2560+0
-{ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"'
+alias dual_monitor="~/.config/nvidia/dual_monitor & ~/.config/polybar/launch.sh"

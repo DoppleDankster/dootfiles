@@ -1,16 +1,16 @@
 #============================= Launch settings ===============================#[6~
 # Applications to be launched when i3 starts
 #NumlockX
-exec_always --no-startup-id numlockx on
+exec --no-startup-id numlockx on
 # Screens
-#exec_always --no-startup-id dual_monitor
+exec_always --no-startup-id dual_monitor
 #Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 #Picom
 exec --no-startup-id picom -e 1 -i 1
 #Notification Center
-exec_always --no-startup-id ntfd
-exec_always --no-startup-id deadd-notification-center
+exec_always --no-startup-id deadd-notification-center 
+exec_always --no-startup-id ntfd 
 # Set a random background every time i3 is launched or reset
 exec_always --no-startup-id nitrogen --restore 2>/dev/null
 
@@ -247,9 +247,10 @@ assign [class="VSCodium"] $wksp3
 # CHAT APPLICATIONS
 assign [class="discord"] $wksp4
 assign [class="Signal"] $wksp4
+assign [class="Slack"] $wksp4
 
 # MEDIAS
-assign [class="spotify"] $wksp5
+for_window [class="Spotify"] move container to workspace $wksp5 --no-auto-back-and-forth
 
 # DOTA
 assign [class="dota2"] $wksp6
