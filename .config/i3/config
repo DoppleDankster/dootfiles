@@ -5,7 +5,7 @@ exec_always --no-startup-id numlockx on
 # Screens
 #exec_always --no-startup-id dual_monitor
 #Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id ~/.config/polybar/launch.sh --forest
 #Picom
 exec --no-startup-id picom -e 1 -i 1
 #Notification Center
@@ -13,6 +13,10 @@ exec_always --no-startup-id ntfd
 exec_always --no-startup-id deadd-notification-center
 # Set a random background every time i3 is launched or reset
 exec_always --no-startup-id nitrogen --restore 2>/dev/null
+
+#Polkit agent
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent1
+exec --no-startup-id /usr/lib/polikit1/polkitd
 
 
 
@@ -95,6 +99,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+XF86AudioMute   exec --no-startup-id ~/.local/script/sink_switch
 
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 #---------------------------- Workspace navigation ---------------------------#
 # Controls to navigate inside a workspace
@@ -160,12 +166,12 @@ bindsym $mod+r mode "resize"
 # Controls to navigate between workspaces
 
 # Special workspaces
-set $wksp1 "TERM"
-set $wksp2 "BROWSER"
-set $wksp3 "IDE"
-set $wksp4 "CHAT"
-set $wksp5 "MEDIA"
-set $wksp6 "RDP/VPN"
+set $wksp1 ""
+set $wksp2 ""
+set $wksp3 ""
+set $wksp4 ""
+set $wksp5 ""
+set $wksp6 ""
 # Switch to workspace
 bindsym $mod+1 workspace $wksp1
 bindsym $mod+2 workspace $wksp2
