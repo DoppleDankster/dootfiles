@@ -4,6 +4,7 @@ source $HOME/.profile
 alias ls='ls --color=tty'
 alias ll='ls -la'
 alias grep='grep  --color=auto'
+alias clipboard="xclip -sel clip <"
 alias zshreload="source $HOME/.zshrc"
 alias polybarreload="$HOME/.config/polybar/launch.sh"
 
