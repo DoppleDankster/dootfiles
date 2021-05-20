@@ -55,5 +55,4 @@
 (package! ob-go)
 
 ;; Python
-(package! python-black)
 (package! lsp-python-ms :disable t)
