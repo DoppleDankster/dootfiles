@@ -1,7 +1,8 @@
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ys"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+ZSH_THEME="ys"
 
 # Shell Configuration
 HISTFILE=~/.histfile
@@ -30,15 +31,20 @@ compinit
 autoload -U promptinit
 promptinit
 
+
+# Glab auto complete
+compdef _glab glab
+source $HOME/.config/glab-cli/completion
+
 # Aliases
 source $HOME/.aliasrc
 source $HOME/.profile
 source $HOME/.envrc
 source $HOME/.datapredrc
-plugins=(git golang docker fzf aws poetry zsh-syntax-highlighting)
+plugins=(golang gcloud docker fzf aws zsh-syntax-highlighting)
 
 # SSH
-eval `keychain --agents ssh --eval github gitlab_datapred server laptop --quiet --confhost`
+eval `keychain --agents ssh --eval github gitlab server laptop gazeuro-dev-large --quiet --confhost`
 
 source $ZSH/oh-my-zsh.sh
 

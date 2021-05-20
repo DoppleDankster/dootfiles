@@ -14,10 +14,6 @@ if  [ -d "/usr/local/go/bin/" ] ; then
     PATH="/usr/local/go/bin/:$PATH"
 fi
 
-if [ -d "$HOME/.local/go/bin" ] ; then
-    PATH="$HOME/.local/go/bin:$PATH"
-fi
-
 if [ -d "$HOME/.emacs.d/bin" ] ; then
     PATH="$HOME/.emacs.d/bin:$PATH"
 fi
