@@ -1,0 +1,270 @@
+#============================= Launch settings ===============================#[6~
+# Applications to be launched when i3 starts
+#NumlockX
+exec_always --no-startup-id numlockx on
+# Screens
+#exec_always --no-startup-id dual_monitor
+#Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
+#Picom
+exec_always --no-startup-id picom -e 1 -i 1 --backend glx
+#Notification Center
+exec_always --no-startup-id ntfd
+exec_always --no-startup-id deadd-notification-center
+# Set a random background every time i3 is launched or reset
+exec_always --no-startup-id nitrogen --restore 2>/dev/null
+# Locker
+exec_always --no-startup-id xss-lock -- betterlockscreen -l
+
+#Polkit agent
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent1
+exec --no-startup-id /usr/lib/polikit1/polkitd
+
+
+
+#================================= Appearance ================================#
+#----------------------------------- Colors ----------------------------------#
+# Colors are set from .Xresources. Fallback is Solarized color scheme
+set_from_resource $backgr background        #002B36
+set_from_resource $bg_alt background_alt    #93A1A1
+set_from_resource $foregr foreground        #586E75
+set_from_resource $primar primary           #268BD2
+set_from_resource $urgent urgent            #DC322F
+
+#----------------------------- Window appearance -----------------------------#
+# Window colors
+client.background $backgr   # default background color
+
+# bar border    - Border color around title bar (used in tabbed windows)
+# window border - Border color around window
+# text          - Text color for the title bar
+# indicator     - Color of border edge where new window will be created
+
+# class                 bar border  win border  text        indicator
+client.focused          $primar     $primar     $backgr     $primar
+client.focused_inactive $bg_alt     $bg_alt     $backgr     $bg_alt
+client.unfocused        $backgr     $backgr     $foregr     $backgr
+client.urgent           $backgr     $urgent     $backgr     $urgent
+
+# Windows have a border of 4 pixels; replace pixel with normal to show titlebar
+new_window pixel 4
+
+# Don't show window borders if there is only one window open
+hide_edge_borders smart
+
+# Font used by i3; controls size of title bar
+font pango:DejaVu Sans 10
+
+# Show gaps between open windows; requires i3-gaps fork
+gaps inner 10
+gaps outer 10
+gaps top 5
+
+
+#================================= Controls ==================================#
+# Controls are mostly default i3 bindings except the directional navigation
+# keys j,k,l,; are changed to the Vim style h,j,k,l instead
+# Mod4 = windows key, Mod1 = Alt
+set $mod Mod4
+
+#------------------------------- Applications --------------------------------#
+# Launch a terminal
+bindsym $mod+Return    exec --no-startup-id alacritty
+
+# Browser
+bindsym $mod+Shift+Return exec --no-startup-id brave
+
+# Emacs
+bindsym $mod+e         exec --no-startup-id emacs
+
+# Open launcher
+bindsym $mod+space         exec --no-startup-id rofi -show drun
+
+# Open cmd launcher
+bindsym $mod+Shift+space   exec --no-startup-id rofi -show run
+
+# Lock session
+bindsym $mod+l     exec --no-startup-id xsecurelock 
+# Suspend PC
+bindsym $mod+Shift+l     exec --no-startup-id $HOME/.local/script/suspend
+
+# ScreenSelect
+bindsym $mod+p         exec --no-startup-id displayselect
+
+# Screenshot
+bindsym $mod+Print     exec --no-startup-id $HOME/.local/script/screenshot
+
+# Volume controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+XF86AudioMute   exec --no-startup-id ~/.local/script/sink_switch
+
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+
+#---------------------------- Workspace navigation ---------------------------#
+# Controls to navigate inside a workspace
+
+# Change focus; both Vim style h,j,k,l and arrow keys work
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
+
+# Move focused container; both Vim style h,j,k,l and arrow keys work
+bindsym $mod+Shift+Left   move left
+bindsym $mod+Shift+Down   move down
+bindsym $mod+Shift+Up     move up
+bindsym $mod+Shift+Right  move right
+#-----------------------------------------------------------------------------#
+
+#--------------------------- Container manipulation --------------------------#
+# Controls to manipulate layout, location, and appearance for window containers
+
+# Split focused container horizontally or vertically
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+s layout toggle split
+
+# Focus the parent container which allows manipulating an entire container
+# and all the children at once
+bindsym $mod+a focus parent
+# Return focus to the child container
+bindsym $mod+z focus child
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# iSpecial mode to resize window (mouse drag also works)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Grow/shrink the window size using typical vim navigation or arrows
+        bindsym h     resize shrink width  10 px or 10 ppt
+        bindsym Left  resize shrink width  10 px or 10 ppt
+        bindsym j     resize grow   height 10 px or 10 ppt
+        bindsym Down  resize grow   height 10 px or 10 ppt
+        bindsym k     resize shrink height 10 px or 10 ppt
+        bindsym Up    resize shrink height 10 px or 10 ppt
+        bindsym l     resize grow   width  10 px or 10 ppt
+        bindsym Right resize grow   width  10 px or 10 ppt
+
+        # Return to normal mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+#-----------------------------------------------------------------------------#
+
+#-------------------------------- Workspaces ---------------------------------#
+# Controls to navigate between workspaces
+
+# Special workspaces
+set $wksp1 ""
+set $wksp2 ""
+set $wksp3 ""
+set $wksp4 ""
+set $wksp5 ""
+set $wksp6 ""
+# Switch to workspace
+bindsym $mod+1 workspace $wksp1
+bindsym $mod+2 workspace $wksp2
+bindsym $mod+3 workspace $wksp3
+bindsym $mod+4 workspace $wksp4
+bindsym $mod+5 workspace $wksp5
+bindsym $mod+6 workspace $wksp6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+
+# Relative workspace motion
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+x move workspace to output right
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $wksp1
+bindsym $mod+Shift+2 move container to workspace $wksp2
+bindsym $mod+Shift+3 move container to workspace $wksp3
+bindsym $mod+Shift+4 move container to workspace $wksp4
+bindsym $mod+Shift+5 move container to workspace $wksp5
+bindsym $mod+Shift+6 move container to workspace $wksp6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+
+# Move to next free workspace
+bindsym $mod+equal exec --no-startup-id next_workspace
+
+# Move focus/window to open workspace on secondary monitor
+bindsym $mod+Tab focus output left
+bindsym $mod+Shift+Tab move container to output left
+
+# The hotkey to move to the current workspace will instead move to the previous
+workspace_auto_back_and_forth yes
+#-----------------------------------------------------------------------------#
+
+#------------------------------ Miscellaneous --------------------------------#
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Exit i3?' \
+                                           -b 'Exit' 'i3-msg exit'"
+#-----------------------------------------------------------------------------#
+#=============================================================================#
+
+
+#============================ Window properties ==============================#
+# Define special properties for certain classes of windows
+
+# Floating mode for dialog windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="feh"] floating enable
+
+#Force clients to spawn in specific workspaces
+# TERMINALS
+assign [class="Alacritty"] $wksp1
+
+# BROWSERS
+assign [class="firefox"] $wksp2
+assign [class="Brave-browser"] $wksp2
+
+# IDE
+assign [class="Emacs"] $wksp3
+assign [class="VSCodium"] $wksp3
+
+# CHAT APPLICATIONS
+assign [class="discord"] $wksp4
+assign [class="Signal"] $wksp4
+assign [class="Slack"] $wksp4
+
+
+# MEDIAS
+for_window [class="Spotify"] move to workspace $wksp5
+
+
+# RDP / VPN
+assign [class="forticlient"] $wksp6
+assign [class="xfreerdp"] $wksp6
+
+# bar {
+# status_command i3status
+# }
