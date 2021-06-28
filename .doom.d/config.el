@@ -82,4 +82,16 @@ information retrieved from files created by the keychain script."
 (use-package! go-mode
   :hook(before-save-hook lsp-organize-imports)
   )
+
+(use-package! python-black
+  :demand t
+  :after python
+  :config
+  (add-hook! 'python-mode-hook #'python-black-on-save-mode)
+  )
+
+(setq xterm-set-window-title t)
+(defadvice! fix-xterm-set-window-title (&optional terminal)
+  :before-while #'xterm-set-window-title
+  (not (display-graphic-p terminal)))
 ;;; config.el ends here

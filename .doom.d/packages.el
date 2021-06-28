@@ -48,6 +48,8 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;;; Code:
 (package! kaolin-themes)
 (package! tide)
 (package! live-py-mode)
@@ -56,3 +58,5 @@
 
 ;; Python
 (package! lsp-python-ms :disable t)
+(package! python-black)
+;;; packages.el ends here
