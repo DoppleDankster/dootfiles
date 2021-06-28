@@ -6,6 +6,7 @@ if  [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# My Scripts
 if  [ -d "$HOME/.local/script" ] ; then
     PATH="$HOME/.local/script:$PATH"
 fi

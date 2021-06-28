@@ -160,13 +160,13 @@ bindsym $mod+r mode "resize"
 # Controls to navigate between workspaces
 
 # Special workspaces
-set $wksp1 "TERM"
-set $wksp2 "BROWSER"
-set $wksp3 "IDE"
-set $wksp4 "CHAT"
-set $wksp5 "MEDIA"
-set $wksp6 "DOTA2"
-set $wksp7 "RDP"
+set $wksp1 ""
+set $wksp2 ""
+set $wksp3 ""
+set $wksp4 ""
+set $wksp5 ""
+set $wksp6 ""
+set $wksp7 ""
 # Switch to workspace
 bindsym $mod+1 workspace $wksp1
 bindsym $mod+2 workspace $wksp2
@@ -258,4 +258,4 @@ assign [class="dota2"] $wksp6
 assign [class="explorer.exe"] $wksp6
 
 # RDP
-assign [class="xfreerdp"] $wksp7
+assign [class="org.remmina.Remmina"] $wksp7

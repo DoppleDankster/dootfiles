@@ -44,8 +44,11 @@ source $HOME/.datapredrc
 plugins=(golang gcloud docker fzf aws zsh-syntax-highlighting)
 
 # SSH
-eval `keychain --agents ssh --eval github gitlab server laptop gazeuro-dev-large --quiet --confhost`
+eval `keychain --agents ssh --eval github gitlab server laptop gazeuro-dev-large  --quiet --confhost`
 
 source $ZSH/oh-my-zsh.sh
 
+# Pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 

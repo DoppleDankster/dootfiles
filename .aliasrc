@@ -27,3 +27,4 @@ alias ec="emacsclient -t"
 #TMUX
 alias  devmux="~/.config/scripts/devmux.sh"
 alias dual_monitor="~/.config/nvidia/dual_monitor & ~/.config/polybar/launch.sh"
+
