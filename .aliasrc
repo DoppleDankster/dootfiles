@@ -8,6 +8,9 @@ alias zshreload="source $HOME/.zshrc"
 alias polybarreload="$HOME/.config/polybar/launch.sh"
 
 #Python
+delete_pycache(){
+    find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+}
 
 #GO
 export GOPATH=$HOME/.local/go
@@ -27,4 +30,3 @@ alias ec="emacsclient -t"
 #TMUX
 alias  devmux="~/.config/scripts/devmux.sh"
 alias dual_monitor="~/.config/nvidia/dual_monitor & ~/.config/polybar/launch.sh"
-
