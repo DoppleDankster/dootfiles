@@ -49,10 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 (package! kaolin-themes)
-(package! tide)
 (package! live-py-mode)
-(package! company-tabnine)
-(package! ob-go)
-
-;; Python
+(package! tide)
 (package! python-black)
+(package! fireplace)
+(package! exec-path-from-shell)

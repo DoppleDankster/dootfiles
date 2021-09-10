@@ -76,7 +76,21 @@ information retrieved from files created by the keychain script."
                (string-match "GPG_AGENT_INFO[=\s]\\([^\s;\n]*\\)" gpg)
                (setenv       "GPG_AGENT_INFO" (match-string 1 gpg))))))
 
-(provide 'keychain-environment)
-(keychain-refresh-environment)
+;(provide 'keychain-environment)
+;(keychain-refresh-environment)
 
+(use-package! go-mode
+  :hook(before-save-hook lsp-organize-imports)
+  )
+
+(use-package! python-black
+  :demand t
+  :after python
+  :config
+  (add-hook! 'python-mode-hook #'python-black-on-save-mode)
+  )
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-copy-env "SSH_AGENT_PID")
+(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 ;;; config.el ends here
