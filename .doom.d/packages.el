@@ -59,4 +59,5 @@
 ;; Python
 (package! lsp-python-ms :disable t)
 (package! python-black)
+(package! color-theme-sanityinc-tomorrow)
 ;;; packages.el ends here

@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Cascadia Code" :size 12 :weight 'regular)
+(setq doom-font (font-spec :family "Cascadia Code" :size 14 :weight 'regular)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 11 :weight 'bold)
       doom-big-font (font-spec :family "Cascadia Code" :size 11 :weight 'bold))
 (after! doom-themes
@@ -79,9 +79,36 @@ information retrieved from files created by the keychain script."
 (provide 'keychain-environment)
 (keychain-refresh-environment)
 
-(use-package! go-mode
-  :hook(before-save-hook lsp-organize-imports)
-  )
+(setq user-mail-address "david.medioni@datapred.com"
+      user-full-name  "David MEDIONI"
+      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbsyncrc -a"
+      mu4e-update-interval  300
+      message-send-mail-function 'smtpmail-send-it
+      starttls-use-gnutls t
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "david.medioni@datapred.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      mu4e-sent-folder "/Sent"
+      mu4e-drafts-folder "/Drafts"
+      mu4e-trash-folder "/Trash"
+      mu4e-refile-folder "/All Mail"
+      mu4e-maildir-shortcuts
+      '(("/gmail/Inbox"    . ?i)
+        ("/gmail/Sent"     . ?s)
+        ("/gmail/All Mail" . ?a)
+        ("/gmail/Trash"    . ?t)))
+
+;; if "gmail" is missing from the address or maildir, the account must be listed here
+(setq +mu4e-gmail-accounts '(("david.medioni@datapred.com" . "/gmail")))
+;; don't need to run cleanup after indexing for gmail
+(setq mu4e-index-cleanup nil
+      ;; because gmail uses labels as folders we can use lazy check since
+      ;; messages don't really "move"
+      mu4e-index-lazy-check t)
+
+
 
 (use-package! python-black
   :demand t
@@ -89,6 +116,12 @@ information retrieved from files created by the keychain script."
   :config
   (add-hook! 'python-mode-hook #'python-black-on-save-mode)
   )
+
+(add-to-list '+format-on-save-enabled-modes 'go-mode t)
+
+(add-hook! 'go-mode-hook
+  (add-hook 'before-save-hook #'lsp-format-buffer nil 'local)
+  (add-hook 'before-save-hook #'lsp-organize-imports nil 'local))
 
 (setq xterm-set-window-title t)
 (defadvice! fix-xterm-set-window-title (&optional terminal)
