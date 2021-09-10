@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+#Script to connect to known wifi networks
+
+# pick a known wifi name
+list_known_wifi() {
+    nmcli -f name connection show --order active| awk '{$1=$1;if(NR>1)print}' | rofi -dmenu -p WIFI -a 0 -no-custom
+}
+
+
+nmcli dev wifi connect "$(list_known_wifi)"
