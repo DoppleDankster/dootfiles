@@ -10,6 +10,11 @@ if  [ -d "$HOME/.local/script" ] ; then
     PATH="$HOME/.local/script:$PATH"
 fi
 
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
 if  [ -d "/usr/local/go/bin/" ] ; then
     PATH="/usr/local/go/bin/:$PATH"
 fi
@@ -30,6 +35,11 @@ if [ -d "$HOME/.npm-packages" ] ; then
     PATH="$HOME/.npm-packages/bin:$PATH"
 fi
 
-if [ -d "$HOME/.pyenv/bin" ] ; then
-    PATH="$HOME/.pyenv/bin:$PATH"
+if [ -d "/opt/sonar-scanner" ] ; then
+    export SONAR_SCANNER_HOME="/opt/sonar-scanner"
+    export PATH="${PATH}:${SONAR_SCANNER_HOME}/bin"
+fi
+
+if [ -d "/opt/WebDriver" ] ; then
+    export PATH="${PATH}:/opt/WebDriver/bin"
 fi

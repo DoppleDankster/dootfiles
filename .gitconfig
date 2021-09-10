@@ -3,3 +3,5 @@
 	name = Doppledankster
 [gitlab]
 	user = DavidMEDIONI
+[core]
+	editor = vim
