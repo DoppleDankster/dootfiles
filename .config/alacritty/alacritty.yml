@@ -13,8 +13,8 @@ font:
   normal:
     family: Cascadia Code
     style: regular
-  size: 11
-background_opacity: 0.7
+  size: 13
+background_opacity: 1
 cursor:
   style: Beam
 
@@ -24,7 +24,8 @@ colors:
   # Default colors
   primary:
     background: '#10100E'
-    foreground: '#C6C6C4'
+      #foreground: '#C6C6C4'
+    foreground: '#949494'
 
   # Normal colors
   normal:
@@ -36,6 +37,7 @@ colors:
     magenta: '#9A4EAE'
     cyan: '#20B2AA'
     white: '#C6C6C4'
+    grey: '#dcdedc'
 
   # Bright colors
   bright:
@@ -47,3 +49,4 @@ colors:
     magenta: '#FF1493'
     cyan: '#00CCCC'
     white: '#FFFAFA'
+    grey: '#dcdedc'
