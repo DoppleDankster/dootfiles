@@ -5,9 +5,13 @@ exec --no-startup-id numlockx on
 # Screens
 exec_always --no-startup-id dual_monitor
 #Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
+#Emacs
+exec_always --no-startup-id emacs --daemon
 #Picom
 exec --no-startup-id picom -e 1 -i 1
+# NM Applet tray
+exec_always --no-startup-id nm-applet
 #Notification Center
 exec_always --no-startup-id deadd-notification-center 
 exec_always --no-startup-id ntfd 
@@ -69,7 +73,7 @@ bindsym $mod+Return    exec --no-startup-id alacritty
 bindsym $mod+Shift+Return exec --no-startup-id brave
 
 # Emacs
-bindsym $mod+e         exec --no-startup-id emacs
+bindsym $mod+e         exec --no-startup-id emacsclient -c
 
 # Open launcher
 bindsym $mod+space         exec --no-startup-id rofi -show drun
@@ -134,7 +138,7 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+a kill
 
 # iSpecial mode to resize window (mouse drag also works)
 mode "resize" {
@@ -240,6 +244,7 @@ assign [class="Alacritty"] $wksp1
 # BROWSERS
 assign [class="firefox"] $wksp2
 assign [class="Brave-browser"] $wksp2
+assign [class="Google-chrome"] $wksp2
 
 # IDE
 assign [class="Emacs"] $wksp3
