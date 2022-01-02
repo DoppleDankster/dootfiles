@@ -31,24 +31,17 @@ compinit
 autoload -U promptinit
 promptinit
 
-
-# Glab auto complete
-compdef _glab glab
-source $HOME/.config/glab-cli/completion
-
-# Aliases
+# To source
 source $HOME/.aliasrc
 source $HOME/.profile
-source $HOME/.envrc
+source $HOME/.varsrc
 source $HOME/.datapredrc
+
+# Plugins
 plugins=(golang gcloud docker fzf aws zsh-syntax-highlighting)
-
-# SSH
-eval `keychain --agents ssh --eval github gitlab server laptop gazeuro-dev-large  --quiet --confhost`
-
+source <(kubectl completion zsh)
 source $ZSH/oh-my-zsh.sh
 
 # Pyenv
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-
