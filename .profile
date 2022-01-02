@@ -23,10 +23,14 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -d "$HOME/.npm-packages" ] ; then
-    PATH="$HOME/.npm-packages/bin:$PATH"
+if [ -d "$HOME/.local/npm-packages" ] ; then
+    PATH="$HOME/.local/npm-packages/bin:$PATH"
 fi
 
 if [ -d "$HOME/.pyenv/bin" ] ; then
     PATH="$HOME/.pyenv/bin:$PATH"
+fi
+
+if [ -d "/opt/WebDriver" ] ; then
+    PATH="/opt/WebDriver/:$PATH"
 fi
