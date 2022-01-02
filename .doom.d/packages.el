@@ -49,15 +49,20 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-;;; Code:
-(package! kaolin-themes)
+;; Web
 (package! tide)
-(package! live-py-mode)
-(package! company-tabnine)
+;; Go
 (package! ob-go)
-
 ;; Python
-(package! lsp-python-ms :disable t)
+(package! lsp-python-ms)
+(package! live-py-mode)
 (package! python-black)
+;; Dart
+(package! lsp-dart)
+;; Misc
+(package! exec-path-from-shell)
+(package! fireplace)
+;; Themes
+(package! kaolin-themes)
 (package! color-theme-sanityinc-tomorrow)
 ;;; packages.el ends here

@@ -79,37 +79,6 @@ information retrieved from files created by the keychain script."
 (provide 'keychain-environment)
 (keychain-refresh-environment)
 
-(setq user-mail-address "david.medioni@datapred.com"
-      user-full-name  "David MEDIONI"
-      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbsyncrc -a"
-      mu4e-update-interval  300
-      message-send-mail-function 'smtpmail-send-it
-      starttls-use-gnutls t
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "david.medioni@datapred.com" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      mu4e-sent-folder "/Sent"
-      mu4e-drafts-folder "/Drafts"
-      mu4e-trash-folder "/Trash"
-      mu4e-refile-folder "/All Mail"
-      mu4e-maildir-shortcuts
-      '(("/gmail/Inbox"    . ?i)
-        ("/gmail/Sent"     . ?s)
-        ("/gmail/All Mail" . ?a)
-        ("/gmail/Trash"    . ?t)))
-
-;; if "gmail" is missing from the address or maildir, the account must be listed here
-(setq +mu4e-gmail-accounts '(("david.medioni@datapred.com" . "/gmail")))
-;; don't need to run cleanup after indexing for gmail
-(setq mu4e-index-cleanup nil
-      ;; because gmail uses labels as folders we can use lazy check since
-      ;; messages don't really "move"
-      mu4e-index-lazy-check t)
-
-
-
 (use-package! python-black
   :demand t
   :after python
@@ -127,4 +96,5 @@ information retrieved from files created by the keychain script."
 (defadvice! fix-xterm-set-window-title (&optional terminal)
   :before-while #'xterm-set-window-title
   (not (display-graphic-p terminal)))
+
 ;;; config.el ends here
